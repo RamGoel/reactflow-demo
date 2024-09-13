@@ -12,8 +12,8 @@ import { DraggableNode } from "./nodes/draggable-node";
 
 export const PipelineToolbar = () => {
   return (
-    <div className="p-2 border-b-[3px] border-violet-300 bg-gradient-to-l from-violet-900 to-violet-700 flex items-center">
-      <h3 className="text-lg text-white italic">Drag and drop nodes :</h3>
+    <div className="p-2 border-b-[3px] border-violet-300 bg-gradient-to-r from-violet-900 to-violet-700 flex items-center">
+      <h3 className="text-lg text-white italic">Start with these nodes :</h3>
       <div className="flex items-center gap-2 p-3 ">
         <DraggableNode
           icon={<MailIcon size={20} />}
