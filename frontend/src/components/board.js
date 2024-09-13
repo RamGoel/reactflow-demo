@@ -4,7 +4,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
-import { useStore } from "./store";
+import { useStore } from "../hooks/useGraph";
 import { shallow } from "zustand/shallow";
 
 import "reactflow/dist/style.css";
@@ -94,7 +94,7 @@ export const PipelineUI = () => {
 
   return (
     <>
-      <div ref={reactFlowWrapper} style={{ width: "100wv", height: "70vh" }}>
+      <div ref={reactFlowWrapper} style={{ width: "100wv", height: "85vh" }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
