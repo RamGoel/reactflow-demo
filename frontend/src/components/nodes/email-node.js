@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { NodeProvider } from "../providers/NodeProvider";
+import { MailIcon } from "lucide-react";
 
 export const EmailNode = () => {
   const [email, setEmail] = useState("");
   return (
-    <NodeProvider label="Send Email to :" labelClass="italic">
+    <NodeProvider
+      label="Send Email to :"
+      icon={<MailIcon size={16} />}
+      labelClass="italic"
+    >
       <div className="flex flex-col items-center justify-center">
         <div className="flex items-center bg-white px-1 py-1 border border-gray-300 rounded-md justify-center">
           <input

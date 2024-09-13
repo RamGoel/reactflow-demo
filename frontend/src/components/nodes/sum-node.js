@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NodeProvider } from "../providers/NodeProvider";
+import { CalculatorIcon } from "lucide-react";
 
 export const SumNode = () => {
   const [num1, setNum1] = useState("");
@@ -11,7 +12,11 @@ export const SumNode = () => {
     setNum2("");
   };
   return (
-    <NodeProvider label="Add Two Numbers :" labelClass="italic">
+    <NodeProvider
+      icon={<CalculatorIcon size={16} />}
+      label="Add Two Numbers :"
+      labelClass="italic"
+    >
       <div className="flex flex-col items-center justify-center">
         <div className="flex items-center gap-2 bg-white px-1 py-1 border border-gray-300 rounded-md justify-center">
           <input

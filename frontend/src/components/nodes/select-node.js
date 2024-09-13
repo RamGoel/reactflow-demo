@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { NodeProvider } from "../providers/NodeProvider";
+import { BoxSelectIcon } from "lucide-react";
 
 export const SelectNode = () => {
   const [selectedOption, setSelectedOption] = useState("");
   let options = ["Gaming", "Swimming", "Reading"];
   return (
-    <NodeProvider label="Select your hobby :" labelClass="italic">
+    <NodeProvider
+      icon={<BoxSelectIcon size={16} />}
+      label="Select your hobby :"
+      labelClass="italic"
+    >
       <div className="flex flex-col items-center justify-center">
         <select
           value={selectedOption}

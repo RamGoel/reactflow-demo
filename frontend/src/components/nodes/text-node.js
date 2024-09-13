@@ -1,8 +1,10 @@
+import { Text } from "lucide-react";
 import { NodeProvider } from "../providers/NodeProvider";
 
 export const TextNode = () => {
   return (
     <NodeProvider
+      icon={<Text size={16} />}
       label="Information :"
       labelClass="italic"
       boxClass="max-w-[300px]"
