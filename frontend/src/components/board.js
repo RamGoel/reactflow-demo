@@ -1,10 +1,6 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
 import { useState, useRef, useCallback } from "react";
-import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
-import { useGraph, useStore } from "../hooks/useGraph";
+import ReactFlow, { Controls, Background, MiniMap, Panel } from "reactflow";
+import { useGraph } from "../hooks/useGraph";
 import { shallow } from "zustand/shallow";
 
 import "reactflow/dist/style.css";
@@ -114,6 +110,7 @@ export const PipelineUI = () => {
             className="bg-gradient-to-r from-violet-700 to-violet-950"
             gap={gridSize}
           />
+
           <Controls />
         </ReactFlow>
       </div>

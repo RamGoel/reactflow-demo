@@ -5,6 +5,7 @@ import {
   BoxSelectIcon,
   CalculatorIcon,
   FileIcon,
+  InfoIcon,
   MailIcon,
   Text,
 } from "lucide-react";
@@ -14,7 +15,9 @@ import SubmitButton from "./submit";
 export const PipelineToolbar = () => {
   return (
     <div className="p-2 border-b-[3px] bg-violet-950 border-violet-300 flex items-center">
-      <h3 className="text-lg text-white italic">Start with these nodes :</h3>
+      <p className="text-white flex items-center gap-2 text-md">
+        <InfoIcon size={16} /> Drag and drop to add nodes
+      </p>{" "}
       <div className="flex items-center gap-2 p-3 ">
         <DraggableNode
           icon={<MailIcon size={20} />}

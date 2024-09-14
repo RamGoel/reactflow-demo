@@ -40,7 +40,7 @@ export const TextNode = ({ focused }) => {
     <NodeProvider
       icon={<Text size={16} />}
       label="Information :"
-      labelClass="italic"
+      labelClass="italic shadow-lg"
       variables={variables}
       boxClass="max-w-[300px]"
     >
@@ -67,3 +67,4 @@ export const TextNode = ({ focused }) => {
     </NodeProvider>
   );
 };
+
