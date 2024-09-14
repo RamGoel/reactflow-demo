@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
+from utils.validators import is_dag
 
 class Node(BaseModel):
     id: str
@@ -15,6 +16,7 @@ class Item(BaseModel):
     edges: List[Edge]
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"], 
@@ -42,35 +44,3 @@ async def parse_pipeline(item: Item) -> dict:
         "is_dag": is_dag(parsed_nodes, parsed_edges),
     }
 
-def is_dag(nodes, edges):
-    adj_list = {node: [] for node in nodes}
-    
-    for u, v in edges:
-        adj_list[u].append(v)
-
-    visited = set()
-    rec_stack = set()
-
-    def dfs(node):
-        if node in rec_stack:
-            return True  
-
-        if node in visited:
-            return False  
-
-        visited.add(node)
-        rec_stack.add(node)
-
-        for neighbor in adj_list[node]:
-            if dfs(neighbor):
-                return True  
-
-        rec_stack.remove(node)
-        return False
-
-    for node in nodes:
-        if node not in visited:
-            if dfs(node):
-                return False  
-
-    return True  

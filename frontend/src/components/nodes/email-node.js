@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NodeProvider } from "../providers/NodeProvider";
-import { MailIcon } from "lucide-react";
+import { MailIcon, Send } from "lucide-react";
 
 export const EmailNode = () => {
   const [email, setEmail] = useState("");
@@ -20,10 +20,11 @@ export const EmailNode = () => {
             className="w-full focus-visible:outline-none text-xs p-1 rounded-md"
           />
           <button className="bg-violet-600 text-xs text-white px-2 py-1 rounded-md">
-            Send
+            <Send size={15} />
           </button>
         </div>
       </div>
     </NodeProvider>
   );
 };
+
