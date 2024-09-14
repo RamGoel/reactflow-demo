@@ -23,7 +23,7 @@ export const TextNode = ({ focused }) => {
     setText(e.target.value);
 
     let words = extractWordsInsideBraces(e.target.value);
-    setVariables(words);
+    setVariables(Array.from(new Set(words)));
 
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -41,6 +41,7 @@ export const TextNode = ({ focused }) => {
       icon={<Text size={16} />}
       label="Information :"
       labelClass="italic"
+      variables={variables}
       boxClass="max-w-[300px]"
     >
       <textarea
@@ -51,7 +52,7 @@ export const TextNode = ({ focused }) => {
         placeholder="Type your text here..."
       />
       {variables.length ? (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {variables.map((variable) => (
             <div
               key={variable}
