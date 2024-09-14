@@ -7,8 +7,9 @@ import {
   applyEdgeChanges,
   MarkerType,
 } from "reactflow";
+import { axios, axiosInstance } from "../lib/axios";
 
-export const useStore = create((set, get) => ({
+export const useGraph = create((set, get) => ({
   nodes: [],
   edges: [],
   getNodeID: (type) => {
@@ -59,4 +60,28 @@ export const useStore = create((set, get) => ({
       }),
     });
   },
+
+  // send pipeline to backend
+  sendPipeline: () => {
+    axiosInstance
+      .post("/pipelines/parse", {
+        nodes: get().nodes,
+        edges: get().edges,
+      })
+      .then((res) => {
+        alert(
+          "Number of nodes: " +
+            res.data.num_nodes +
+            "\nNumber of edges: " +
+            res.data.num_edges +
+            "\nIs DAG: " +
+            res.data.is_dag
+        );
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 }));
+
