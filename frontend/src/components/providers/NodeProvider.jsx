@@ -18,7 +18,8 @@ export const NodeProvider = ({
                 {variables.map((variable, index, array) => (
                     <CustomHandle label={variable} id={variable} index={index} array={array} type="target" position={Position.Left} key={index} />
                 ))}
-            </div> : null}
+            </div> : hideHandle !== "right" && <Handle className="p-1 mt-[-3px] !border-[2px] !bg-gradient-to-t from-violet-500 to-violet-800" type="target" position={Position.Left} />}
+
             {hideHandle !== "left" && <Handle className="p-1 mt-[-3px] !border-[2px] !bg-gradient-to-t from-violet-500 to-violet-800" type="source" position={Position.Right} />}
             <div className="rounded-md overflow-hidden">
                 <div className={`flex items-center gap-2 bg-violet-600 text-left px-3 p-2 text-xs text-white font-[500] ${labelClass}`}>
@@ -48,7 +49,7 @@ const CustomHandle = ({ id, position, type, index, array, label }) => {
     };
 
     return <>
-        <div className="absolute left-[-110px] text-right  w-[100px] text-white text-xs" style={{ top: `${calculateTop(index, array) - 12}%` }}>{label}</div>
+        <div className="absolute left-[-110px] text-right  w-[100px] text-white text-xs" style={{ top: `${calculateTop(index, array) - 14}%` }}>{label}</div>
         <Handle id={id} className="p-1 !border-[2px] !bg-gradient-to-t from-violet-500 to-violet-800" style={{ top: `${calculateTop(index, array)}%` }} type={type} position={position} />
     </>
 }

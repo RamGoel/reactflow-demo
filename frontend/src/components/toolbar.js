@@ -9,6 +9,7 @@ import {
   Text,
 } from "lucide-react";
 import { DraggableNode } from "./nodes/draggable-node";
+import SubmitButton from "./submit";
 
 export const PipelineToolbar = () => {
   return (
@@ -38,9 +39,7 @@ export const PipelineToolbar = () => {
         <DraggableNode icon={<Text size={20} />} type="textNode" label="Text" />
       </div>
       <div className="flex items-center gap-2 justify-end flex-1">
-        <button className="px-4 py-2 hover:scale-105 transition-all duration-150 ease-in-out hover:bg-violet-200 flex items-center gap-2 bg-violet-300 text-violet-950 rounded-md font-[500]">
-          <ArrowUpRight size={20} /> Submit Pipeline
-        </button>
+        <SubmitButton />
       </div>
     </div>
   );
