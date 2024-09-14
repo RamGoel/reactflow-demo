@@ -1,28 +1,22 @@
-import { CurlyBraces, LucideCurlyBraces, Text } from "lucide-react";
+import {
+  AlertCircle,
+  CurlyBraces,
+  LucideCurlyBraces,
+  Text,
+} from "lucide-react";
 import { NodeProvider } from "../providers/NodeProvider";
 import { useEffect, useRef, useState } from "react";
+import { HandlerUtils } from "../../utils/handlers";
 
 export const TextNode = ({ focused }) => {
   const [text, setText] = useState("");
   const [variables, setVariables] = useState([]);
   const textareaRef = useRef(null);
 
-  function extractWordsInsideBraces(text) {
-    const regex = /\{\{([^}]+)\}\}/g;
-    let matches;
-    const results = [];
-
-    while ((matches = regex.exec(text)) !== null) {
-      results.push(matches[1].trim());
-    }
-
-    return results;
-  }
-
   const handleInput = (e) => {
     setText(e.target.value);
 
-    let words = extractWordsInsideBraces(e.target.value);
+    let words = HandlerUtils.extractWordsInsideBraces(e.target.value);
     setVariables(Array.from(new Set(words)));
 
     if (textareaRef.current) {
@@ -41,7 +35,7 @@ export const TextNode = ({ focused }) => {
       icon={<Text size={16} />}
       label="Information :"
       labelClass="italic shadow-lg"
-      variables={variables}
+      variables={variables.filter(HandlerUtils.isValidJSVariableName)}
       boxClass="max-w-[300px]"
     >
       <textarea
@@ -56,10 +50,23 @@ export const TextNode = ({ focused }) => {
           {variables.map((variable) => (
             <div
               key={variable}
-              className="bg-white px-1 text-xs text-blue-700 flex items-center gap-1 font-semibold  rounded-sm"
+              title={
+                HandlerUtils.isValidJSVariableName(variable)
+                  ? ""
+                  : "Invalid variable name"
+              }
+              className={`bg-white px-1 text-xs text-blue-700 flex items-center gap-1 font-semibold  rounded-sm ${
+                HandlerUtils.isValidJSVariableName(variable)
+                  ? ""
+                  : "text-red-500 opacity-50"
+              }`}
             >
-              <LucideCurlyBraces size={13} />{" "}
-              <span className="mb-[2px]">{variable}</span>
+              {HandlerUtils.isValidJSVariableName(variable) ? (
+                <LucideCurlyBraces size={13} />
+              ) : (
+                <AlertCircle size={12} />
+              )}
+              <span className="mb-[0px]">{variable}</span>
             </div>
           ))}
         </div>
